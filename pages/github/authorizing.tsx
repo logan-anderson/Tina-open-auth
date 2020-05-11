@@ -1,4 +1,4 @@
-import { useGithubAuthRedirect } from 'react-tinacms-github'
+import { useGithubAuthRedirect  } from 'react-tinacms-github'
 
 // Our GitHub app redirects back to this page with auth code
 export default function Authorizing() {
