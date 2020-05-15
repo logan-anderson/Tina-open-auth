@@ -14,17 +14,18 @@ export default class Site extends App {
     /**
      * 1. Create the TinaCMS instance
      */
-    console.log('_app')
+    console.log({baseBranch: process.env.BASE_BRANCH})
     this.cms = new TinaCMS({
       apis: {
         /**
          * 2. Register the GithubClient
          */
         github: new GithubClient({
-          proxy: '/api/proxy-github',
-          authCallbackRoute: '/api/create-github-access-token',
+          proxy: "/api/proxy-github",
+          authCallbackRoute: "/api/create-github-access-token",
           clientId: process.env.GITHUB_CLIENT_ID,
           baseRepoFullName: process.env.REPO_FULL_NAME, // e.g: tinacms/tinacms.org,
+          baseBranch: process.env.BASE_BRANCH,
         }),
       },
       /**
