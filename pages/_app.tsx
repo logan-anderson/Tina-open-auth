@@ -14,6 +14,7 @@ export default class Site extends App {
     /**
      * 1. Create the TinaCMS instance
      */
+    console.log('_app')
     this.cms = new TinaCMS({
       apis: {
         /**
