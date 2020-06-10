@@ -6,39 +6,30 @@ import {
   InlineForm,
   BlockComponentProps,
 } from "react-tinacms-inline";
+import { usePlugin } from "tinacms";
 import { getGithubPreviewProps, parseJson } from "next-tinacms-github";
 import { GetStaticProps } from "next";
 import {
   useGithubJsonForm,
   useGithubToolbarPlugins,
 } from "react-tinacms-github";
+
 import { EditToggle } from "../components/inline/inline-ui";
-import { usePlugin } from "tinacms";
-
-export const heading_template = {
-  type: "heading",
-  label: "Heading",
-  defaultItem: {
-    text: "At vero eos et accusamus",
-  },
-  key: "heading-block",
-  fields: [],
-};
-
-export function Heading(props: BlockComponentProps) {
-  return (
-    <BlocksControls index={props.index}>
-      <div>
-        <InlineTextarea name="text" />
-      </div>
-    </BlocksControls>
-  );
-}
+import {
+  Heading,
+  heading_template,
+  MarkdownBlock,
+  markdown_template,
+} from "../components/inline/componets";
 
 const PAGE_BLOCKS = {
   heading: {
     Component: Heading,
     template: heading_template,
+  },
+  markdown: {
+    Component: MarkdownBlock,
+    template: markdown_template,
   },
   // body_copy: {
   //   Component: BodyCopy,
