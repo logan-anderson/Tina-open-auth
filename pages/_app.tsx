@@ -1,20 +1,20 @@
-import App from 'next/app'
-import { TinaCMS, TinaProvider } from 'tinacms'
+import App from "next/app";
+import { TinaCMS, TinaProvider } from "tinacms";
 import {
   useGithubEditing,
   GithubClient,
   TinacmsGithubProvider,
-} from 'react-tinacms-github'
+} from "react-tinacms-github";
 
 export default class Site extends App {
-  cms: TinaCMS
+  cms: TinaCMS;
 
   constructor(props) {
-    super(props)
+    super(props);
     /**
      * 1. Create the TinaCMS instance
      */
-    console.log({baseBranch: process.env.BASE_BRANCH})
+    console.log({ baseBranch: process.env.BASE_BRANCH });
     this.cms = new TinaCMS({
       apis: {
         /**
@@ -25,7 +25,7 @@ export default class Site extends App {
           authCallbackRoute: "/api/create-github-access-token",
           clientId: process.env.GITHUB_CLIENT_ID,
           baseRepoFullName: process.env.REPO_FULL_NAME, // e.g: tinacms/tinacms.org,
-          baseBranch: process.env.BASE_BRANCH
+          baseBranch: process.env.BASE_BRANCH,
         }),
       },
       /**
@@ -38,11 +38,11 @@ export default class Site extends App {
       toolbar: {
         hidden: !props.pageProps.preview,
       },
-    })
+    });
   }
 
   render() {
-    const { Component, pageProps } = this.props
+    const { Component, pageProps } = this.props;
     return (
       /**
        * 4. Wrap the page Component with the Tina and Github providers
@@ -57,36 +57,21 @@ export default class Site extends App {
           {/**
            * 5. Add a button for entering Preview/Edit Mode
            */}
-          <EditLink editMode={pageProps.preview} />
           <Component {...pageProps} />
         </TinacmsGithubProvider>
       </TinaProvider>
-    )
+    );
   }
 }
 
 const enterEditMode = () => {
   return fetch(`/api/preview`).then(() => {
-    window.location.href = window.location.pathname
-  })
-}
+    window.location.href = window.location.pathname;
+  });
+};
 
 const exitEditMode = () => {
   return fetch(`/api/reset-preview`).then(() => {
-    window.location.reload()
-  })
-}
-
-export interface EditLinkProps {
-  editMode: boolean
-}
-
-export const EditLink = ({ editMode }: EditLinkProps) => {
-  const github = useGithubEditing()
-
-  return (
-    <button onClick={editMode ? github.exitEditMode : github.enterEditMode}>
-      {editMode ? 'Exit Edit Mode' : 'Edit This Site'}
-    </button>
-  )
-}
+    window.location.reload();
+  });
+};

@@ -21,7 +21,8 @@ export const markdown_template = {
   type: "markdown",
   label: "Markdown",
   defaultItem: {
-    rawMarkdown: "# this is a title",
+    rawMarkdown:
+      "# Cool a new markdown block\n\nyou can edit his to your liking",
   },
 };
 

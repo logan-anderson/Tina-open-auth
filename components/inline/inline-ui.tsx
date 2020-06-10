@@ -1,5 +1,6 @@
 import { useInlineForm } from "react-tinacms-inline";
 import { Button as TinaButton } from "@tinacms/styles";
+import { useGithubEditing } from "react-tinacms-github";
 
 export function EditToggle() {
   // Access 'edit mode' controls via `useInlineForm` hook
@@ -16,3 +17,19 @@ export function EditToggle() {
     </TinaButton>
   );
 }
+export interface EditLinkProps {
+  editMode: boolean;
+}
+
+export const EditLink = ({ editMode }: EditLinkProps) => {
+  const github = useGithubEditing();
+
+  return (
+    <TinaButton
+      primary
+      onClick={editMode ? github.exitEditMode : github.enterEditMode}
+    >
+      {editMode ? "Exit Edit Mode" : "Edit This Site"}
+    </TinaButton>
+  );
+};

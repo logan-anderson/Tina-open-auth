@@ -21,6 +21,7 @@ import {
   MarkdownBlock,
   markdown_template,
 } from "../components/inline/componets";
+import Layout from "../components/layout";
 
 const PAGE_BLOCKS = {
   heading: {
@@ -58,21 +59,14 @@ export default function Home({ file, preview }) {
   useGithubToolbarPlugins();
 
   return (
-    <div className="container">
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
-      <main>
-        <h1 className="title">{data.title}</h1>
-        <h3>{data.subtitle}</h3>
-        <InlineForm form={form}>
-          {preview && <EditToggle />}
-          <InlineBlocks name="blocks" blocks={PAGE_BLOCKS} />
-        </InlineForm>
-      </main>
-    </div>
+    <Layout preview={preview}>
+      <h1 className="title">{data.title}</h1>
+      <h3>{data.subtitle}</h3>
+      <InlineForm form={form}>
+        {preview && <EditToggle />}
+        <InlineBlocks name="blocks" blocks={PAGE_BLOCKS} />
+      </InlineForm>
+    </Layout>
   );
 }
 

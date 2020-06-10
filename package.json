@@ -17,7 +17,7 @@
     "react-tinacms-editor": "^0.8.0",
     "react-tinacms-github": "^0.4.2",
     "react-tinacms-inline": "^0.7.0",
-    "styled-components": "^5.1.0",
+    "styled-components": "^5.1.1",
     "tinacms": "^0.21.1"
   },
   "devDependencies": {
