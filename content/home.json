@@ -8,6 +8,10 @@
       "text": "This is  test "
     },
     {
+      "_template": "markdown",
+      "rawMarkdown": "# this is a title\n\nThis is a test"
+    },
+    {
       "_template": "heading",
       "text": "block 1"
     },
