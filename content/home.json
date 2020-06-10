@@ -4,6 +4,10 @@
   "text": "this is some text",
   "blocks": [
     {
+      "_template": "markdown",
+      "rawMarkdown": "# Cool a new markdown block\n\nwow, this is awesome!"
+    },
+    {
       "_template": "heading",
       "text": "This is  test "
     },
