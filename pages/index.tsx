@@ -13,6 +13,7 @@ import {
   useGithubToolbarPlugins,
 } from "react-tinacms-github";
 import { EditToggle } from "../components/inline/inline-ui";
+import { usePlugin } from "tinacms";
 
 export const heading_template = {
   type: "heading",
@@ -27,7 +28,9 @@ export const heading_template = {
 export function Heading(props: BlockComponentProps) {
   return (
     <BlocksControls index={props.index}>
-      <InlineTextarea name="text" />
+      <div>
+        <InlineTextarea name="text" />
+      </div>
     </BlocksControls>
   );
 }
@@ -59,6 +62,7 @@ export default function Home({ file, preview }) {
     ],
   };
   const [data, form] = useGithubJsonForm(file, formOptions);
+  usePlugin(form);
 
   useGithubToolbarPlugins();
 
