@@ -1,13 +1,53 @@
 import Head from "next/head";
-import { BlocksControls, InlineTextarea } from "react-tinacms-inline";
+import {
+  BlocksControls,
+  InlineTextarea,
+  InlineBlocks,
+  InlineForm,
+  BlockComponentProps,
+} from "react-tinacms-inline";
 import { getGithubPreviewProps, parseJson } from "next-tinacms-github";
 import { GetStaticProps } from "next";
 import {
   useGithubJsonForm,
   useGithubToolbarPlugins,
 } from "react-tinacms-github";
+import { EditToggle } from "../components/inline/inline-ui";
 
-export default function Home({ file }) {
+export const heading_template = {
+  type: "heading",
+  label: "Heading",
+  defaultItem: {
+    text: "At vero eos et accusamus",
+  },
+  key: "heading-block",
+  fields: [],
+};
+
+export function Heading(props: BlockComponentProps) {
+  return (
+    <BlocksControls index={props.index}>
+      <InlineTextarea name="text" />
+    </BlocksControls>
+  );
+}
+
+const PAGE_BLOCKS = {
+  heading: {
+    Component: Heading,
+    template: heading_template,
+  },
+  // body_copy: {
+  //   Component: BodyCopy,
+  //   template: body_copy_template,
+  // },
+  // image: {
+  //   Component: Image,
+  //   template: image_template,
+  // },
+};
+
+export default function Home({ file, preview }) {
   const formOptions = {
     label: "Home Page",
     fields: [
@@ -32,9 +72,10 @@ export default function Home({ file }) {
       <main>
         <h1 className="title">{data.title}</h1>
         <h3>{data.subtitle}</h3>
-        <BlocksControls index={file}>
-          <InlineTextarea name="text" />
-        </BlocksControls>
+        <InlineForm form={form}>
+          {preview && <EditToggle />}
+          <InlineBlocks name="blocks" blocks={PAGE_BLOCKS} />
+        </InlineForm>
       </main>
     </div>
   );
