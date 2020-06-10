@@ -1,5 +1,23 @@
 {
   "title": "this is a test",
   "subtitle": "this is a subtitle",
-  "text": "this is some text"
+  "text": "this is some text",
+  "blocks": [
+    {
+      "_template": "heading",
+      "text": "This is  test "
+    },
+    {
+      "_template": "heading",
+      "text": "block 1"
+    },
+    {
+      "_template": "heading",
+      "text": "block 2"
+    },
+    {
+      "_template": "heading",
+      "text": "block 3"
+    }
+  ]
 }
